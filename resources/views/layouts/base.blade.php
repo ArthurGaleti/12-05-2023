@@ -29,5 +29,9 @@
         <p>Consectetur cum accusamus explicabo, deserunt numquam corrupti aliquam nulla ut illo repellendus nobis dicta suscipit praesentium nemo, vitae quasi distinctio corporis ratione tempora provident magnam. Soluta odio cum dicta fugiat.</p>
         <p>Iure quisquam nemo, odio repellendus impedit doloribus voluptas omnis. Libero dolores aspernatur eos voluptatibus ab, nisi provident saepe nam a porro, reiciendis eius repellat ullam, harum quo velit omnis itaque.</p>
     </div>
+
+    <footer>
+        <p class="fs-5">T94</p>
+    </footer>
 </body>
 </html>
