@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 #models
 use App\Models\User;
+use Nette\Schema\Elements\Structure;
+
+
 
 class UserController extends Controller
 {
@@ -34,7 +37,34 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+
+        $validated = $request->validate([
+            'name' =>'required',
+            'email' => 'required|unique:users',
+            'password' => 'required|confirmed|min:4'
+
+
+        ]);
+
+        //$usuario = new User();
+        //$usuario->create($request->all());
+
+        //$usuario = new User();
+        //$usuario->fill($request->all());
+        //$usuario->name = strtoupper($request->name);
+        //$usuario->save();
+
+
+        //$usuario = new User();
+        //$usuario->create($request->all());
+        //$usuario->save();
+
+
+
+        $usuario = User::create($request->all());
+
+        return redirect()
+             ->route('usuario.show',['id'=>$usuario->id]);
     }
 
     /**
@@ -52,7 +82,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $usuario =  User::find($id);
+        return view('usuarios.form')
+                ->with(compact('usuario'));
     }
 
     /**
@@ -60,7 +92,11 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $usuario = User::find($id);
+        $usuario->update($request->all());
+
+        return redirect()->route('usuario.show',['id'=>$usuario->id])
+                         ->with ('success','Atualizado com sucesso');
     }
 
     /**
@@ -68,6 +104,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $usuario = User::find($id)->delete();
+
+        return redirect()->back()->with('danger','Excluido com sucesso');
     }
 }
